@@ -37,6 +37,10 @@ class Scripture
         }
     }
 
+    public string GetReference()
+    {
+        return _reference.GetReference();
+    }
     public bool IsCompleteHidden()
     {
         foreach (Word word in _words)
@@ -49,6 +53,16 @@ class Scripture
         return true;
     }
 
+    public Scripture()
+    {
+        _reference = new Reference("John", "3", "16");
+        string content = "For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.";
+        _words = new List<Word>();
+        foreach (string word in content.Split(" "))
+        {
+            _words.Add(new Word(word));
+        }
+    }
 
     public Scripture(string reference, string content) {
         char[] delimiterChars = { ' ', ':', '-'};
