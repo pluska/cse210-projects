@@ -2,6 +2,19 @@ using System;
 
 class Program
 {
+    /*Progress Report
+    * The program creates a library
+    * that stores books and genres with Library.AddBook()
+    *
+    * The program creates a menu with the following options:
+    * 1. Display Books - Displays all books in the library and their information using Library.DisplayBooks()
+    * 2. Display Genres - Displays all genres in the library and their information using Library.DisplayGenres()
+    * 3. Search by Genre - Displays all books in the library that have the specified genre using Library.SearchByGenre()
+    * 4. Search by Author - Displays all books in the library that have the specified author using Library.SearchByAuthor()
+    * 5. Load Books - Loads books from a file using Library.LoadBooks() (It is in progress)
+    * 6. Save Books - Saves books to a file using Library.SaveBooks() (It is in progress)
+    * 7. Exit
+    */
     static void Main(string[] args)
     {
         Library library = new Library();
