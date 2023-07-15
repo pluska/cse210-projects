@@ -6,6 +6,18 @@ class Character
   private int _age;
   private string _description;
 
+  public string GetName()
+  {
+    return _name;
+  }
+  public int GetAge()
+  {
+    return _age;
+  }
+  public string GetDescription()
+  {
+    return _description;
+  }
   public void DisplayCharacterInfo()
   {
     Console.WriteLine($"Name: {_name}");

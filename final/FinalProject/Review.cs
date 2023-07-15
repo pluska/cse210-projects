@@ -5,6 +5,10 @@ class Review
   private string _comment;
   private int _score;
 
+  public string GetComment()
+  {
+    return _comment;
+  }
   public int GetScore()
   {
     return _score;

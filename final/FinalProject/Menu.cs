@@ -6,6 +6,7 @@ class Menu
 
   public void DisplayMenu()
   {
+    Console.WriteLine("\n");
     for (int i = 0; i < _options.Count; i++)
     {
       Console.WriteLine($"{i + 1}. {_options[i]}");

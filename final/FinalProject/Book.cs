@@ -2,13 +2,17 @@ using System;
 
 abstract class Book
 {
-  string _title;
-  string _author;
-  string _genre;
-  int _publicationYear;
-  List<string> _content;
-  List<Review> _reviews;
+  protected string _title;
+  protected string _author;
+  protected string _genre;
+  protected int _publicationYear;
+  protected List<string> _content;
+  protected List<Review> _reviews;
 
+  public string GetTitle()
+  {
+    return _title;
+  }
   public string GetGenre()
   {
     return _genre;
@@ -24,28 +28,52 @@ abstract class Book
     List<string> options = new List<string>() {
       "Next page",
       "Previous page",
+      "Create review",
       "Return to Main Menu",
     };
     Menu menu = new Menu(options);
     while (keepReading)
     {
+      Console.Clear();
       Console.WriteLine($"{_content[page]}");
       menu.DisplayMenu();
       Console.WriteLine("Enter your choice: ");
-      int choice = int.Parse(Console.ReadLine());
+      int choice = 0;
+      try
+      {
+        choice = int.Parse(Console.ReadLine());
+      }
+      catch (System.Exception)
+      {
+        Console.WriteLine("Invalid choice");
+        Console.WriteLine("Press any key to continue");
+        Console.ReadLine();
+        continue;
+      }
       switch (choice)
       {
         case 1:
           page++;
           break;
         case 2:
-          page--;
+          if (page > 0)
+          {
+            page--;
+          } else
+          {
+            Console.WriteLine("You are on the first page.");
+          }
           break;
         case 3:
+          CreateReview();
+          break;
+        case 4:
           keepReading = false;
           break;
         default:
           Console.WriteLine("Invalid choice");
+          Console.WriteLine("Press any key to continue");
+          Console.ReadLine();
           break;
       }
     }
@@ -86,7 +114,8 @@ abstract class Book
     Console.WriteLine($"Average rating: {rating/_reviews.Count}");
   }
 
-  public abstract void SaveBook();
+  public abstract string SaveBook();
+  public abstract void LoadBook(string book);
 
   public Book(string title, string author, string genre, int publicationYear, List<string> content)
   {
@@ -95,6 +124,26 @@ abstract class Book
     _genre = genre;
     _publicationYear = publicationYear;
     _content = content;
+    _reviews = new List<Review>();
+  }
+
+  public Book(string title, string author, string genre, int publicationYear, List<string> content, List<Review> reviews)
+  {
+    _title = title;
+    _author = author;
+    _genre = genre;
+    _publicationYear = publicationYear;
+    _content = content;
+    _reviews = reviews;
+  }
+
+  public Book()
+  {
+    _title = "";
+    _author = "";
+    _genre = "";
+    _publicationYear = 0;
+    _content = new List<string>();
     _reviews = new List<Review>();
   }
 
